@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risultati Rhythm Trainer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .logout {
+            background-color: #f44336;
+        }
+        .logout:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Risultati Rhythm Trainer</h1>
+        <div>
+            <a href="{{ url_for('logout') }}" class="button logout">Logout</a>
+        </div>
+    </div>
+
+    {% if results %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Data</th>
+                <th>Corrette</th>
+                <th>Tentate</th>
+                <th>Punteggio (%)</th>
+                <th>Punteggio Decimale</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td>{{ result.Name }}</td>
+                <td>{{ result.Email }}</td>
+                <td>{{ result['Date and Time'] }}</td>
+                <td>{{ result['Correct'] }}</td>
+                <td>{{ result['Attempted'] }}</td>
+                <td>{{ result['Percentage'] }}</td>
+                <td>{{ result['Decimal Score'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('download_csv') }}" class="button">Scarica CSV</a>
+    {% else %}
+    <p>Nessun risultato disponibile.</p>
+    {% endif %}
+</body>
+</html>

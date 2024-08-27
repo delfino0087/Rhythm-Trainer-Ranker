@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhythm Trainer Results</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rhythm Trainer Results</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Correct</th>
+                <th>Attempted</th>
+                <th>Percentage</th>
+                <th>Date and Time</th>
+                <th>Decimal Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <td>{{ result.Name }}</td>
+                <td>{{ result.Email }}</td>
+                <td>{{ result.Correct }}</td>
+                <td>{{ result.Attempted }}</td>
+                <td>{{ result.Percentage }}%</td>
+                <td>{{ result.Date and Time }}</td>
+                <td>{{ result.Decimal Score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
